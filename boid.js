@@ -1,5 +1,3 @@
-/// <reference path="./p5.global-mode.d.ts" />
-
 class Boid {
     constructor(idx) {
       this.idx = idx;
@@ -107,9 +105,9 @@ class Boid {
     updateSliderValues(){
       this.minSpeed = minSpeedSlider.value();
       this.maxSpeed = maxSpeedSlider.value();
-      this.perceptionAlignment = alignmentPerceptionSlider.value();
-      this.perceptionCohesion = cohesionPerceptionSlider.value();
-      this.perceptionSeparation = separationPerceptionSlider.value();
+      // this.perceptionAlignment = alignmentPerceptionSlider.value();
+      // this.perceptionCohesion = cohesionPerceptionSlider.value();
+      // this.perceptionSeparation = separationPerceptionSlider.value();
       this.maxForce = maxForceSlider.value();
     }
 

@@ -6,30 +6,36 @@ let num_boids = 50;
 function setup() {
 
     let settingsMenu = new Settings(true);
+    settingsMenu.addHeader("General");
     numBoidsSlider = settingsMenu.addSlider("Number of boids", 1, 200, num_boids, 1);
     numBoidsSlider.setOnChange(function(){
         num_boids = numBoidsSlider.value();
-        console.log(num_boids);
         respawn();
     })
+    minSpeedSlider = settingsMenu.addSlider("Min speed", 0, 10, 2, 0.1);
+    minSpeedSlider.setOnChange(updateSliderValues);
+    maxSpeedSlider = settingsMenu.addSlider("Max speed", 0, 10, 3, 0.1);
+    maxSpeedSlider.setOnChange(updateSliderValues);
+    maxForceSlider = settingsMenu.addSlider("Max force", 0, 15, 5, 0.1);
+    maxForceSlider.setOnChange(updateSliderValues);
+
+    settingsMenu.addHeader("Alignment");
     alignmentSlider = settingsMenu.addSlider("Alignment", 0, 10, 1, 0.1);
     alignmentPerceptionSlider = settingsMenu.addSlider("Alignment Perception", 0, 1000, 50, 1);
     alignmentPerceptionSlider.setOnChange(updateSliderValues);
     alignmentCheckbox = settingsMenu.addCheckbox("Show Alignment Perception", true, null)
+    
+    settingsMenu.addHeader("Cohesion");
     cohesionSlider = settingsMenu.addSlider("Cohesion", 0, 10, 1, 0.1);
     cohesionPerceptionSlider = settingsMenu.addSlider("Cohesion Perception", 0, 1000, 50, 1);
     cohesionPerceptionSlider.setOnChange(updateSliderValues);
     cohesionCheckbox = settingsMenu.addCheckbox("Show Cohesion Perception", false, null)
+
+    settingsMenu.addHeader("Separation");
     separationSlider = settingsMenu.addSlider("Separation", 0, 10, 1, 0.1);
     separationPerceptionSlider = settingsMenu.addSlider("Separation Perception", 0, 1000, 50, 1);
     separationPerceptionSlider.setOnChange(updateSliderValues);
     separationCheckbox = settingsMenu.addCheckbox("Show Separation Perception", false, null)
-    minSpeedSlider = settingsMenu.addSlider("Min speed", 0, 10, 1, 0.1);
-    minSpeedSlider.setOnChange(updateSliderValues);
-    maxSpeedSlider = settingsMenu.addSlider("Max speed", 0, 10, 5, 0.1);
-    maxSpeedSlider.setOnChange(updateSliderValues);
-    maxForceSlider = settingsMenu.addSlider("Max force", 0, 15, 5, 0.1);
-    maxForceSlider.setOnChange(updateSliderValues);
 
 
     createCanvas(500, 500);
