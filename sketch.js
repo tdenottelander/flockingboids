@@ -37,35 +37,33 @@ function setup() {
     separationPerceptionSlider.setOnChange(updateSliderValues);
     separationCheckbox = settingsMenu.addCheckbox("Show Separation Perception", false, null)
 
-    let button = document.createElement("button");
-    document.body.appendChild(button);
-    button.onclick = function(e){
-        numBoidsSlider.setValue(50);
-        minSpeedSlider.setValue(1.6);
-        maxSpeedSlider.setValue(2.5);
-        maxForceSlider.setValue(2.5);
-        alignmentSlider.setValue(2.5);
-        alignmentPerceptionSlider.setValue(150);
-        cohesionSlider.setValue(2.5);
-        cohesionPerceptionSlider.setValue(75);
-        separationSlider.setValue(5.5);
-        separationPerceptionSlider.setValue(30);
+    function createPreset(values, innerHTML) {
+        let button = document.createElement("button");
+        button.innerHTML = innerHTML;
+        button.onclick = function(){
+        numBoidsSlider.setValue(values[0]);
+        minSpeedSlider.setValue(values[1]);
+        maxSpeedSlider.setValue(values[2]);
+        maxForceSlider.setValue(values[3]);
+        alignmentSlider.setValue(values[4]);
+        alignmentPerceptionSlider.setValue(values[5]);
+        cohesionSlider.setValue(values[6]);
+        cohesionPerceptionSlider.setValue(values[7]);
+        separationSlider.setValue(values[8]);
+        separationPerceptionSlider.setValue(values[9]);
+        }
+        return button;
     }
 
-    let button2 = document.createElement("button");
-    document.body.appendChild(button);
-    button.onclick = function(){
-        numBoidsSlider.setValue(75);
-        minSpeedSlider.setValue(1.5);
-        maxSpeedSlider.setValue(2.0);
-        maxForceSlider.setValue(5.0);
-        alignmentSlider.setValue(3.8);
-        alignmentPerceptionSlider.setValue(132);
-        cohesionSlider.setValue(3.3);
-        cohesionPerceptionSlider.setValue(150);
-        separationSlider.setValue(7.5);
-        separationPerceptionSlider.setValue(32);
-    }
+    settingsMenu.addHeader("Presets");
+    let preset1 = createPreset([50, 1.6, 2.5, 2.5, 2.5, 150, 2.5, 75, 5.5, 30], 1);
+    let preset2 = createPreset([75, 1.5, 2.0, 5.0, 3.8, 132, 3.3, 150, 7.5, 32], 2);
+    let preset3 = createPreset([50, 1.5, 2.5, 2.5, 5, 130, 0.5, 75, 1.5, 30], 3);
+    let preset4 = createPreset([50, 1.5, 2.5, 2.5, 1.5, 130, 0, 75, 10, 60], 4);
+    settingsMenu.addCustomElements([preset1, preset2, preset3, preset4]);
+    settingsMenu.addCustomElement(createPreset([50, 1.5, 2.3, 8.5, 0, 0, 0, 0, 4, 70], "separation only"));
+    settingsMenu.addCustomElement(createPreset([50, 1.5, 2, 2, 1, 50, 0, 0, 0, 0], "alignment only"));
+    settingsMenu.addCustomElement(createPreset([50, 1.5, 2, 2.5, 0, 0, 2, 120, 0, 0], "cohesion only"));
 
     createCanvas(500, 500);
 
