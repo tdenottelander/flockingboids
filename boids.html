@@ -14,28 +14,50 @@
         html, body {
             font-family: "Trebuchet MS", Helvetica, sans-serif;
             font-size: .8em;
-            color: white;
-            /* width:  100%;
-            height: 100%;
-            margin: 0; */
+            background-color: lightgray
+            /* color: white; */
         }
 
-        ul, li, b {
-            color: black;
+        .todo {
+            color: rgb(180,180,180);
         }
     </style>
 </head>
 <body>
+    
+    <h1>Flocking boids simulation</h1> 
+    <div id="canvas-holder"></div>
+
+    <p>This is a simulation of independent bodies that react on their surroundings. There is no single boid that takes the lead. Flocking behaviour emerges from different boids reacting on each other as they move through the space, just like a flock of birds and schools of fish. Every boid has 3 forces acting upon it:</p>
+    <ul>
+        <li><b>Alignment:</b> The boid tries to take on the average alignment of all boids within its perception radius.</li>
+        <li><b>Cohesion:</b> The boid tries to move towards the average position of all boids within its perception radius.</li>
+        <li><b>Separation:</b> The boid tries to move away from all boids within its perception radius</li>
+    </ul>
 
     
-    <b> TODO </b>
+    <h3>Resources</h3>
     <ul>
-        <li>Make settings menu draggable across screen</li>
-        <li>Make canvas fit to screen</li>
-        <li>Make obstacles for boids</li>
-        <li>Make settings menu more clear, like defining groups of settings and setting color</li>
-        <li>Make the boids only look forward</li>
-        <li>Make the boids actively avoid obstacles in front of them</li>
+        <li><a href="http://www.red3d.com/cwr/boids/" target="_blank">Background on Boids by Craig Reynolds</a></li>
+        <li><a href="https://www.youtube.com/watch?v=bqtqltqcQhw&t=7s" target="_blank">Coding Adventure: Boids [video]</a></li>
+        <li><a href="https://www.youtube.com/watch?v=QbUPfMXXQIY" target="_blank">How do Boids Work? A Flocking Simulation [video]
+        </a></li>
+        <li><a href="https://www.youtube.com/watch?v=WUXq7GYH62Y" target="_blank">Boids flocking algorithm [video]</a></li>
     </ul>
+
+
+    <br><br>
+    <div class="todo">
+        <b> TODO </b>
+        <ul>
+            <li>Make documentation of what this simulation is about</li>
+            <li>Fix horizontal scrolling bug of settings window</li>
+            <li>Make canvas fit to screen</li>
+            <li>Make more efficient. Implement a quadtree or something similar</li>
+            <li>Make obstacles for boids</li>
+            <li>Make the boids only look forward</li>
+            <li>Make the boids actively avoid obstacles in front of them</li>
+        </ul>
+    </div>
 </body>
 </html>

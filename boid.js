@@ -7,7 +7,7 @@ class Boid {
       this.maxSpeed = maxSpeedSlider.value();
       this.velocity.setMag(random(this.minSpeed, this.maxSpeed));
       this.acceleration = createVector();
-      this.maxForce = 5;
+      this.maxForce = maxForceSlider.value();
       this.size = 10;
 
       this.perceptionAlignment = alignmentPerceptionSlider.value();
