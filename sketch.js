@@ -37,6 +37,35 @@ function setup() {
     separationPerceptionSlider.setOnChange(updateSliderValues);
     separationCheckbox = settingsMenu.addCheckbox("Show Separation Perception", false, null)
 
+    let button = document.createElement("button");
+    document.body.appendChild(button);
+    button.onclick = function(e){
+        numBoidsSlider.setValue(50);
+        minSpeedSlider.setValue(1.6);
+        maxSpeedSlider.setValue(2.5);
+        maxForceSlider.setValue(2.5);
+        alignmentSlider.setValue(2.5);
+        alignmentPerceptionSlider.setValue(150);
+        cohesionSlider.setValue(2.5);
+        cohesionPerceptionSlider.setValue(75);
+        separationSlider.setValue(5.5);
+        separationPerceptionSlider.setValue(30);
+    }
+
+    let button2 = document.createElement("button");
+    document.body.appendChild(button);
+    button.onclick = function(){
+        numBoidsSlider.setValue(75);
+        minSpeedSlider.setValue(1.5);
+        maxSpeedSlider.setValue(2.0);
+        maxForceSlider.setValue(5.0);
+        alignmentSlider.setValue(3.8);
+        alignmentPerceptionSlider.setValue(132);
+        cohesionSlider.setValue(3.3);
+        cohesionPerceptionSlider.setValue(150);
+        separationSlider.setValue(7.5);
+        separationPerceptionSlider.setValue(32);
+    }
 
     createCanvas(500, 500);
 
