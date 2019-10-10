@@ -1,5 +1,5 @@
 let boids = [];
-let num_boids = 70;
+let num_boids = 50;
 
 function setup() {
 
@@ -71,6 +71,10 @@ function setup() {
     settingsMenu.addCustomElement(createPreset([50, 1.5, 2.3, 8.5, 0, 0, 0, 0, 4, 70], "separation only"));
     settingsMenu.addCustomElement(createPreset([50, 1.5, 2, 2, 1, 50, 0, 0, 0, 0], "alignment only"));
     settingsMenu.addCustomElement(createPreset([50, 1.5, 2, 2.5, 0, 0, 2, 120, 0, 0], "cohesion only"));
+
+    settingsMenu.addHeader("Trail options");
+    trailLengthSlider = settingsMenu.addSlider("Trail length", 0, 100, 50, 1);
+    trailLengthSlider.setOnChange(updateSliderValues);
 
     for (let i = 0; i < num_boids; i++){
         boids.push(new Boid(i))

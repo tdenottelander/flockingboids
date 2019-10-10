@@ -9,6 +9,8 @@ class Boid {
       this.acceleration = createVector();
       this.maxForce = maxForceSlider.value();
       this.size = 10;
+      this.history = [];
+      this.line = false;
 
       this.perceptionAlignment = alignmentPerceptionSlider.value();
       this.perceptionCohesion = cohesionPerceptionSlider.value();
@@ -100,6 +102,7 @@ class Boid {
       let speed = constrain(this.velocity.mag(), this.minSpeed, this.maxSpeed);
       this.velocity.setMag(speed);
       this.position.add(this.velocity);
+      this.history.push(createVector(this.position.x + Math.random() * 5, this.position.y + Math.random() * 5));
     }
 
     updateSliderValues(){
@@ -112,24 +115,55 @@ class Boid {
     }
 
     show() {
-        noStroke();
-        if(this.idx != 0){
-          fill(255);
-        } else {
-          fill(255, 255, 255, 100);
-          if(alignmentCheckbox.value()){
-            circle(this.position.x, this.position.y, this.perceptionAlignment);
-          }
-          if(cohesionCheckbox.value()){
-            circle(this.position.x, this.position.y, this.perceptionCohesion);
-          }
-          if(separationCheckbox.value()){
-            circle(this.position.x, this.position.y, this.perceptionSeparation);
-          }
-          fill('red');
+      this.drawTrail();
+      this.drawPerception();
+      this.drawTriangle();
+    }
+
+    drawPerception(){
+      noStroke();
+      if(this.idx != 0){
+        fill(255);
+      } else {
+        fill(255, 255, 255, 100);
+        if(alignmentCheckbox.value()){
+          circle(this.position.x, this.position.y, this.perceptionAlignment);
         }
-        this.drawTriangle();
+        if(cohesionCheckbox.value()){
+          circle(this.position.x, this.position.y, this.perceptionCohesion);
+        }
+        if(separationCheckbox.value()){
+          circle(this.position.x, this.position.y, this.perceptionSeparation);
+        }
+        fill('red');
       }
+    }
+
+    drawTrail(){
+      if(this.history.length > trailLengthSlider.value()){
+        this.history.splice(0,1);
+      }
+      
+      if(this.line){
+        stroke("yellow")
+        noFill()
+        beginShape()
+        for (let i = 0; i < this.history.length; i++){
+          var pos = this.history[i];
+          if(Math.abs(pos.x - this.position.x) < width/2 && Math.abs(pos.y - this.position.y) < width/2){
+            vertex(pos.x, pos.y)
+          }
+        }
+        endShape()
+      } else {
+        noStroke();
+        fill("yellow")
+        for (let i = 0; i < this.history.length; i++){
+          var pos = this.history[i];
+          ellipse(pos.x, pos.y, i/10, i/10)
+        }
+      }
+    }
 
     drawTriangle() {
       translate(this.position.x, this.position.y)
